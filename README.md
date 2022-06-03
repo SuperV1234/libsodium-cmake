@@ -1,8 +1,5 @@
 # libsodium-cmake
 
-[![Travis build status](https://travis-ci.com/robinlinden/libsodium-cmake.svg?branch=master)](https://travis-ci.com/robinlinden/libsodium-cmake)
-[![Windows CI](https://github.com/robinlinden/libsodium-cmake/workflows/Windows%20CI/badge.svg)](https://github.com/robinlinden/libsodium-cmake/actions?query=workflow%3A%22Windows+CI%22)
-
 ## Description
 
 CMakeWrapper for [libsodium](https://github.com/jedisct1/libsodium), the modern, portable, easy to use crypto library.
@@ -30,10 +27,16 @@ make test
 ## Using in your project
 
 ```cmake
+cmake_minimum_required(VERSION 3.14)
+# 3.11 and higher is supported, but this example uses
+# `FetchContent_MakeAvailable` which is only available starting with 3.14.
+
 include(FetchContent)
 
+# Update the commit to point to whatever libsodium-cmake-commit you want to target.
 FetchContent_Declare(Sodium
     GIT_REPOSITORY https://github.com/robinlinden/libsodium-cmake.git
+    GIT_TAG 99f14233eab1d4f7f49c2af4ec836f2e701c445e # HEAD as of 2022-05-28
 )
 set(SODIUM_DISABLE_TESTS ON)
 FetchContent_MakeAvailable(Sodium)
